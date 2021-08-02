@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaConsumer {
 
-    private MessageProcessor messageProcessor;
+    private final MessageProcessor messageProcessor;
 
     public KafkaConsumer(MessageProcessor messageProcessor) {
         this.messageProcessor = messageProcessor;
