@@ -3,14 +3,11 @@ package com.example.vkbotservice.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KafkaMessage {
-    private Integer groupId;
-    private Integer clientId;
-    private String text;
+public class KeyboardButton {
+    ButtonAction action;
+    String color;
 }

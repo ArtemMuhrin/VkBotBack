@@ -1,6 +1,6 @@
 package com.example.vkbotservice.listener;
 
-import com.example.vkbotservice.model.KafkaMessage;
+import com.example.vkbotservice.model.Message;
 import com.example.vkbotservice.service.MessageProcessor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class KafkaConsumer {
     }
 
     @KafkaListener(topics = "request", groupId = "group_id", containerFactory = "kafkaListener")
-    public void consume(KafkaMessage kafkaMessage) {
-        messageProcessor.processMessage(kafkaMessage);
+    public void consume(Message message) {
+        messageProcessor.processMessage(message);
     }
 }

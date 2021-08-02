@@ -1,19 +1,19 @@
 package com.example.vkbotservice.service;
 
-import com.example.vkbotservice.model.KafkaMessage;
+import com.example.vkbotservice.model.Message;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaProducer {
 
-    private KafkaTemplate<String, KafkaMessage> kafkaTemplate;
+    private KafkaTemplate<String, Message> kafkaTemplate;
 
-    public KafkaProducer(KafkaTemplate<String, KafkaMessage> kafkaTemplate) {
+    public KafkaProducer(KafkaTemplate<String, Message> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void send(KafkaMessage kafkaMessage) {
-        kafkaTemplate.send("response", kafkaMessage);
+    public void send(Message message) {
+        kafkaTemplate.send("response", message);
     }
 }

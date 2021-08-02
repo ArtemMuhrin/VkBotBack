@@ -1,6 +1,6 @@
 package com.example.vkbotservice.config;
 
-import com.example.vkbotservice.model.KafkaMessage;
+import com.example.vkbotservice.model.Message;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ public class KafkaConsumerConfig {
     private String bootstrapServersConfig;
 
     @Bean
-    public ConsumerFactory<String, KafkaMessage> consumerFactory() {
+    public ConsumerFactory<String, Message> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServersConfig);
@@ -34,13 +34,13 @@ public class KafkaConsumerConfig {
         config.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
         config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
 
-        return new DefaultKafkaConsumerFactory<String, KafkaMessage>(config, new StringDeserializer(),
-                new JsonDeserializer<>(KafkaMessage.class));
+        return new DefaultKafkaConsumerFactory<String, Message>(config, new StringDeserializer(),
+                new JsonDeserializer<>(Message.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> kafkaListener() {
-        ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, Message> kafkaListener() {
+        ConcurrentKafkaListenerContainerFactory<String, Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }

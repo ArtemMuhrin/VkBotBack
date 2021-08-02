@@ -1,6 +1,6 @@
 package com.example.vkbotservice.config;
 
-import com.example.vkbotservice.model.KafkaMessage;
+import com.example.vkbotservice.model.Message;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +31,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, KafkaMessage> kafkaTemplate() {
+    public KafkaTemplate<String, Message> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }
