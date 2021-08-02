@@ -20,6 +20,6 @@ public class KeyboardService {
     }
 
     public Keyboard getKeyboard() {
-        return circuitBreakerFactory.create("circuitbreaker").run(() -> restTemplate.getForEntity(getKeyboardUrl, Keyboard.class).getBody(), throwable -> null);
+        return circuitBreakerFactory.create("circuitbreaker").run(() -> restTemplate.getForObject(getKeyboardUrl, Keyboard.class), throwable -> null);
     }
 }
